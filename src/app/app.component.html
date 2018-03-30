@@ -1,23 +1,32 @@
 <div class="container">
   <div class="col-xs-8 col-xs-offset-2">
     <form (ngSubmit)="submitForm(form)" #form="ngForm" >
-      <div class="form-group">
+
+      <div class="form-group" [ngClass]="{'has-error' : email.invalid && email.touched}">
         <label>Email</label>
         <input
           type="text"
           class="form-control"
           ngModel
           name="email"
+          required
+          email
+          #email="ngModel"
         >
+        <p *ngIf="email.invalid && email.touched">Enter correct E-mail</p>
       </div>
-      <div class="form-group">
+
+      <div class="form-group" [ngClass]="{'has-error':pass.invalid && pass.touched}">
         <label>Password</label>
         <input
           type="password"
           class="form-control"
           ngModel
           name="pass"
+          required
+          #pass="ngModel"
         >
+        <p *ngIf="pass.invalid && pass.touched">Enter Password</p>
       </div>
       <div class="form-group">
         <label>Choose Country</label>
@@ -25,6 +34,7 @@
           class="form-control"
           ngModel
           name="country"
+          required
         >
           <option value="ru">Russia</option>
           <option value="by">Belarus</option>
@@ -34,13 +44,19 @@
       <div class="radio" *ngFor="let ans of answers">
         <label>
           <input
+            required
             type="radio"
-            [value]="answer"
+            [value]="ans.type"
             ngModel
+            name="answer"
           >{{ans.text}}
         </label>
       </div>
-      <button class="btn btn-success" type="submit">Save</button>
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="!form.valid"
+      >Save</button>
     </form>
   </div>
 </div>

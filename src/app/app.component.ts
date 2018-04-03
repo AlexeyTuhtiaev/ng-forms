@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('form') form: NgForm;
   title = 'app';
 
   answers = [{type: 'yes', text:'Yes!'},
@@ -15,9 +16,31 @@ export class AppComponent {
   defaultAnswer = 'no';
   defaultCountry = 'ru';
 
-  submitForm(form: NgForm){
+  formData = {};
+  isSubmited = false;
 
-    console.log('submit !!', form);
+  submitForm(){
+    console.log('submit !!', this.form);
+    this.isSubmited = true;
+    this.formData = this.form.value;
+    this.form.reset();
+  }
+
+  addRandEmail(){
+    const randEmail= 'test@gmail.com';
+    // this.form.setValue({
+    //   user: {
+    //     pass: '',
+    //     email: randEmail
+    //   },
+    //   country: '',
+    //   answer: ''
+    // });
+
+    this.form.form.patchValue({
+     user: {email: 'testPatchValue@gmail.com'}
+    });
+
 
   }
 }

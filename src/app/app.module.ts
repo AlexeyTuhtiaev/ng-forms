@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AlertModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
-import {FormsModule} from "@angular/forms";
+import { ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,9 +10,8 @@ import {FormsModule} from "@angular/forms";
     AppComponent
   ],
   imports: [
-    AlertModule.forRoot(),
     BrowserModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

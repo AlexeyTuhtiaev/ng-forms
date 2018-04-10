@@ -20,7 +20,10 @@
           >
         </div>
       </div>
-      <p *ngIf="form.get('user.pass').invalid && form.get('user.pass').touched">Enter password !!!</p>
+      <p *ngIf="form.get('user.pass').invalid && form.get('user.pass').touched">
+        <span *ngIf="form.get('user.pass').errors['required']">Enter password !!!</span>
+        <span *ngIf="form.get('user.pass').errors['lengthError']">Password length should be more then {{charsCount}} !!!</span>
+      </p>
       <div class="form-group">
         <label>Choose Country</label>
         <select

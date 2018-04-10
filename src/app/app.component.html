@@ -1,7 +1,8 @@
 <div class="container">
   <div class="col-xs-8 col-xs-offset-2">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form-group" [ngClass]="{'input-lg': form.get('email').invalid && form.get('email').touched}">
+      <div formGroupName="user">
+        <div class="form-group" [ngClass]="{'input-lg': form.get('user.email').invalid && form.get('user.email').touched}">
           <label>Email</label>
           <input
             type="text"
@@ -9,8 +10,8 @@
             formControlName="email"
           >
         </div>
-        <p *ngIf="form.get('email').invalid && form.get('email').touched">Enter E-mail !!!</p>
-        <div class="form-group" [ngClass]="{'input-lg': form.get('pass').invalid && form.get('pass').touched}">
+        <p *ngIf="form.get('user.email').invalid && form.get('user.email').touched">Enter E-mail !!!</p>
+        <div class="form-group" [ngClass]="{'input-lg': form.get('user.pass').invalid && form.get('user.pass').touched}">
           <label>Password</label>
           <input
             type="password"
@@ -18,7 +19,8 @@
             formControlName="pass"
           >
         </div>
-      <p *ngIf="form.get('pass').invalid && form.get('pass').touched">Enter password !!!</p>
+      </div>
+      <p *ngIf="form.get('user.pass').invalid && form.get('user.pass').touched">Enter password !!!</p>
       <div class="form-group">
         <label>Choose Country</label>
         <select
@@ -49,5 +51,3 @@
     </form>
   </div>
 </div>
-
-

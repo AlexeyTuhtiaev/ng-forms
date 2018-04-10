@@ -10,7 +10,10 @@
             formControlName="email"
           >
         </div>
-        <p *ngIf="form.get('user.email').invalid && form.get('user.email').touched">Enter E-mail !!!</p>
+        <p *ngIf="form.get('user.email').invalid && form.get('user.email').touched">
+          <span *ngIf="form.get('user.email').errors['email']">Enter E-mail !!!</span>
+          <span *ngIf="form.get('user.email').errors['emailIsUsed']">This E-mail has already exist !!!</span>
+        </p>
         <div class="form-group" [ngClass]="{'input-lg': form.get('user.pass').invalid && form.get('user.pass').touched}">
           <label>Password</label>
           <input
